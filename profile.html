@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentech - Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10">
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-4xl">
+    <h1 class="text-white text-3xl font-bold mb-6 text-center">Your Profile</h1>
+    <p id="greeting" class="text-center text-teal-400 mb-8 text-xl"></p>
+
+    <!-- FLEX CONTAINER -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <!-- LEFT SIDE INFO -->
+        <div id="user-info" class="space-y-3 text-gray-900 dark:text-gray-100 text-lg font-medium"></div>
+
+        <!-- RIGHT SIDE QR + BUTTON -->
+        <div class="flex flex-col items-center">
+            <div id="qrcode" class="p-4 bg-white rounded-lg shadow-md"></div>
+
+            <button id="download-qr"
+                class="mt-6 bg-teal-500 hover:bg-teal-600 text-white px-5 py-3 rounded text-lg font-semibold">
+                Download QR Code
+            </button>
+        </div>
+
+    </div>
+
+    <button id="logout" 
+        class="mt-10 w-full bg-red-500 hover:bg-red-600 text-white p-3 rounded text-lg font-semibold">
+        Logout
+    </button>
+</div>
+
+<script>
+// Load current user
+const currentUserEmail = sessionStorage.getItem('currentUser');
+if (!currentUserEmail) {
+    window.location.href = "log.html"; // redirect if not logged in
+}
+const user = JSON.parse(localStorage.getItem(currentUserEmail));
+
+document.getElementById('greeting').textContent = `Hello, ${user.firstName}!`;
+
+// Display user info
+const userInfoDiv = document.getElementById('user-info');
+userInfoDiv.innerHTML = `
+<p><strong>First Name:</strong> ${user.firstName}</p>
+<p><strong>Middle Name:</strong> ${user.middleName}</p>
+<p><strong>Last Name:</strong> ${user.lastName}</p>
+<p><strong>Contact No.:</strong> ${user.contact}</p>
+<p><strong>Email:</strong> ${user.email}</p>
+<p><strong>Course / Section:</strong> ${user.course}</p>
+<p><strong>Year / Grade:</strong> ${user.year}</p>
+`;
+
+// Generate QR code with full student info
+const qrData = JSON.stringify({
+    firstName: user.firstName,
+    middleName: user.middleName,
+    lastName: user.lastName,
+    contact: user.contact,
+    email: user.email,
+    course: user.course,
+    year: user.year
+});
+const qrContainer = document.getElementById("qrcode");
+let qr = new QRCode(qrContainer, {
+    text: qrData,
+    width: 260,
+    height: 260
+});
+
+// Download QR code
+document.getElementById('download-qr').addEventListener('click', () => {
+    const img = qrContainer.querySelector('img');
+    if (img) {
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = `${user.firstName}_${user.lastName}_QR.png`;
+        link.click();
+    } else {
+        alert('QR code not ready yet.');
+    }
+});
+
+// Logout
+document.getElementById('logout').addEventListener('click', () => {
+    sessionStorage.removeItem('currentUser');
+    window.location.href = "index.html";
+});
+</script>
+
+</body>

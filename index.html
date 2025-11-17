@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentech - QR Code Generator Profile</title>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #343A40;
+        }
+        .dark body {
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="bg-white dark:bg-gray-900 shadow-md py-4 px-8 md:px-12 rounded-full mx-4 md:mx-8 mt-4">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="Logo.png" alt="Presentech Logo" class="w-10 h-10 object-contain">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-50">Presentech</h1>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-gray-700 dark:text-gray-300">
+                <a href="features.html" class="font-medium hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200">Features</a>
+                <a href="about.html" class="font-medium hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200">About</a>
+                <a href="services.html" class="font-medium hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200">Services</a>
+                <a href="contact.html" class="font-medium hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200">Contact</a>
+                <a href="log.html" class="font-medium text-teal-500 dark:text-teal-400 hover:text-teal-600 dark:hover:text-teal-500 transition-colors duration-200">Log in / Sign up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-white dark:bg-gray-800 rounded-3xl mx-4 md:mx-8 mt-6 overflow-hidden shadow-lg">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://epe.brightspotcdn.com/dims4/default/51c964b/2147483647/strip/true/crop/3406x2311+0+0/resize/840x570!/format/webp/quality/90/?url=https%3A%2F%2Fepe-brightspot.s3.us-east-1.amazonaws.com%2F53%2F66%2Fb17323e84e668e02e25d5b4a7a93%2Fteacher-students-classroom.jpg')">
+                <!-- Overlay to darken the image slightly for text readability -->
+                <div class="absolute inset-0 bg-black opacity-30"></div>
+            </div>
+            <div class="relative z-10 p-8 md:p-16 lg:p-24 text-white">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">QR Code Attendance System</h1>
+                <p class="mt-4 md:mt-6 text-xl md:text-2xl lg:text-3xl font-light max-w-2xl">Generate, manage, and track attendance effortlessly with our smart QR generator.</p>
+                <a href="log.html"><button id="book-appointment-btn" class="mt-8 md:mt-10 px-8 py-4 bg-white text-gray-900 font-bold text-lg rounded-full shadow-xl hover:bg-gray-100 transition-transform duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                    LogIn / SignUp
+                </button></a>
+            </div>
+        </section>
+
+        <!-- Placeholder for pop-up message -->
+        <div id="message-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-sm w-full text-center">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-4"></h3>
+                <p class="text-gray-600 dark:text-gray-400"></p>
+                <button id="close-modal-btn" class="mt-6 px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium rounded-full hover:bg-gray-300 dark:hover:bg-gray-600">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <!-- Key Features Section -->
+        <section class="py-16 md:py-10">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <!-- Feature 1 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-50">Fast Attendance</h3>
+                        <p class="text-gray-500 dark:text-gray-400">Scan instantly with auto-detection and fast response.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-50">Accurate Data</h3>
+                        <p class="text-gray-500 dark:text-gray-400">Ensures reliable and error-free attendance tracking.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.339-3.182A8.852 8.852 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-50">Easy Management</h3>
+                        <p class="text-gray-500 dark:text-gray-400">Manage students, teachers, and classes efficiently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<footer class="border-t border-gray-700 py-8 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white">
+        <p>&copy; 2025 Presentech. All rights reserved.</p>
+        <a href="privacy.html" class="hover:text-teal-400">Privacy Policy</a>
+    </div>
+</footer>
+
+</main>
+</body>
+</html>
